@@ -22,7 +22,6 @@ export default function GraphPage() {
 
       {/* Timeline Visualization */}
       <div
-        ref={containerRef}
         className="relative overflow-x-auto rounded-2xl border border-surface-200 dark:border-surface-800 bg-white dark:bg-surface-900 p-6"
       >
         <div style={{ minWidth: totalWidth + 100 }} className="relative">
