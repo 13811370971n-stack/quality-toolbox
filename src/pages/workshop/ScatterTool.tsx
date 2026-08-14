@@ -106,66 +106,66 @@ export default function ScatterTool() {
   return (
     <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
       <h1 className="text-3xl font-bold mb-2">⚡ 散点图</h1>
-      <p className="text-sm text-surface-700/60 dark:text-surface-200/40 mb-6">
+      <p className="text-sm text-mckinsey-muted mb-6">
         输入 X-Y 数据对，分析两变量间的相关性，自动计算相关系数和回归方程。
       </p>
 
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
         {/* Input */}
         <div className="lg:col-span-1">
-          <div className="p-4 rounded-xl border border-surface-200 dark:border-surface-800 space-y-3">
+          <div className="p-4 rounded-xl border border-mckinsey-border space-y-3">
             <h3 className="font-semibold">数据输入</h3>
             <div>
-              <label className="text-xs text-surface-700/60 dark:text-surface-200/40 block mb-1">X轴标签:</label>
-              <input type="text" value={xLabel} onChange={(e) => setXLabel(e.target.value)} className="w-full px-3 py-1.5 rounded border border-surface-200 dark:border-surface-800 bg-white dark:bg-surface-900 text-sm focus:outline-none focus:ring-1 focus:ring-primary-500" />
+              <label className="text-xs text-mckinsey-muted block mb-1">X轴标签:</label>
+              <input type="text" value={xLabel} onChange={(e) => setXLabel(e.target.value)} className="w-full px-3 py-1.5 rounded border border-mckinsey-border bg-white text-sm focus:outline-none focus:ring-1 focus:ring-mckinsey-teal" />
             </div>
             <div>
-              <label className="text-xs text-surface-700/60 dark:text-surface-200/40 block mb-1">Y轴标签:</label>
-              <input type="text" value={yLabel} onChange={(e) => setYLabel(e.target.value)} className="w-full px-3 py-1.5 rounded border border-surface-200 dark:border-surface-800 bg-white dark:bg-surface-900 text-sm focus:outline-none focus:ring-1 focus:ring-primary-500" />
+              <label className="text-xs text-mckinsey-muted block mb-1">Y轴标签:</label>
+              <input type="text" value={yLabel} onChange={(e) => setYLabel(e.target.value)} className="w-full px-3 py-1.5 rounded border border-mckinsey-border bg-white text-sm focus:outline-none focus:ring-1 focus:ring-mckinsey-teal" />
             </div>
             <div>
-              <label className="text-xs text-surface-700/60 dark:text-surface-200/40 block mb-1">数据 (X,Y 每行一对):</label>
+              <label className="text-xs text-mckinsey-muted block mb-1">数据 (X,Y 每行一对):</label>
               <textarea
                 value={dataText}
                 onChange={(e) => setDataText(e.target.value)}
                 rows={12}
-                className="w-full px-3 py-2 rounded-lg border border-surface-200 dark:border-surface-800 bg-white dark:bg-surface-900 text-sm font-mono focus:outline-none focus:ring-1 focus:ring-primary-500 resize-none"
+                className="w-full px-3 py-2 rounded-lg border border-mckinsey-border bg-white text-sm font-mono focus:outline-none focus:ring-1 focus:ring-mckinsey-teal resize-none"
               />
             </div>
             <label className="flex items-center gap-2 text-sm cursor-pointer">
               <input type="checkbox" checked={showRegression} onChange={(e) => setShowRegression(e.target.checked)} className="rounded" />
               显示回归线
             </label>
-            <p className="text-xs text-surface-700/60 dark:text-surface-200/40">数据点数: {data.length}</p>
+            <p className="text-xs text-mckinsey-muted">数据点数: {data.length}</p>
           </div>
         </div>
 
         {/* Chart + Stats */}
         <div className="lg:col-span-2 space-y-4">
-          <div className="p-4 rounded-xl border border-surface-200 dark:border-surface-800 bg-white dark:bg-surface-900">
+          <div className="p-4 rounded-xl border border-mckinsey-border bg-white">
             <svg ref={chartRef} className="w-full" style={{ minHeight: 400 }} />
           </div>
           {data.length >= 3 && (
-            <div className="p-4 rounded-xl border border-surface-200 dark:border-surface-800">
+            <div className="p-4 rounded-xl border border-mckinsey-border">
               <h3 className="font-semibold mb-3">📐 相关分析</h3>
               <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 text-center">
                 <div>
                   <div className={`text-lg font-bold ${Math.abs(stats.r) >= 0.7 ? 'text-green-600' : Math.abs(stats.r) >= 0.4 ? 'text-yellow-600' : 'text-red-600'}`}>
                     {stats.r.toFixed(4)}
                   </div>
-                  <div className="text-xs text-surface-700/60 dark:text-surface-200/40">相关系数 r</div>
+                  <div className="text-xs text-mckinsey-muted">相关系数 r</div>
                 </div>
                 <div>
                   <div className="text-lg font-bold">{stats.r2.toFixed(4)}</div>
-                  <div className="text-xs text-surface-700/60 dark:text-surface-200/40">R²</div>
+                  <div className="text-xs text-mckinsey-muted">R²</div>
                 </div>
                 <div>
                   <div className="text-sm font-medium">{getCorrelationDesc(stats.r)}</div>
-                  <div className="text-xs text-surface-700/60 dark:text-surface-200/40">相关强度</div>
+                  <div className="text-xs text-mckinsey-muted">相关强度</div>
                 </div>
                 <div>
                   <div className="text-xs font-mono">y = {stats.slope.toFixed(4)}x + {stats.intercept.toFixed(4)}</div>
-                  <div className="text-xs text-surface-700/60 dark:text-surface-200/40">回归方程</div>
+                  <div className="text-xs text-mckinsey-muted">回归方程</div>
                 </div>
               </div>
             </div>

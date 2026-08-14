@@ -88,7 +88,7 @@ export default function RecommendPage() {
   return (
     <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
       <h1 className="text-3xl font-bold mb-2">🎯 智能推荐</h1>
-      <p className="text-surface-700/60 dark:text-surface-200/40 mb-8">
+      <p className="text-mckinsey-muted mb-8">
         描述你遇到的质量问题或目标，系统将推荐最适合的工具。
       </p>
 
@@ -100,11 +100,11 @@ export default function RecommendPage() {
             value={query}
             onChange={(e) => setQuery(e.target.value)}
             placeholder="例如：我想找出产品缺陷的主要原因..."
-            className="flex-1 px-4 py-3 rounded-lg border border-surface-200 dark:border-surface-800 bg-white dark:bg-surface-900 focus:outline-none focus:ring-2 focus:ring-primary-500 transition"
+            className="flex-1 px-4 py-3 rounded-lg border border-mckinsey-border bg-white focus:outline-none focus:ring-2 focus:ring-mckinsey-teal transition"
           />
           <button
             type="submit"
-            className="px-6 py-3 rounded-lg bg-primary-600 hover:bg-primary-700 text-white font-medium transition-colors"
+            className="px-6 py-3 rounded-lg bg-mckinsey-teal hover:bg-mckinsey-teal text-white font-medium transition-colors"
           >
             推荐
           </button>
@@ -113,13 +113,13 @@ export default function RecommendPage() {
 
       {/* Quick Questions */}
       <div className="mb-8">
-        <p className="text-sm text-surface-700/60 dark:text-surface-200/40 mb-2">常见问题：</p>
+        <p className="text-sm text-mckinsey-muted mb-2">常见问题：</p>
         <div className="flex flex-wrap gap-2">
           {quickQuestions.map((q) => (
             <button
               key={q}
               onClick={() => { setQuery(q); recommend(q) }}
-              className="px-3 py-1.5 rounded-full border border-surface-200 dark:border-surface-800 text-xs hover:border-primary-300 dark:hover:border-primary-700 transition"
+              className="px-3 py-1.5 rounded-full border border-mckinsey-border text-xs hover:border-mckinsey-teal/30 transition"
             >
               {q}
             </button>
@@ -139,34 +139,34 @@ export default function RecommendPage() {
               initial={{ opacity: 0, x: -10 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ delay: i * 0.05 }}
-              className="p-5 rounded-xl border border-surface-200 dark:border-surface-800 hover:border-primary-300 dark:hover:border-primary-700 transition"
+              className="p-5 rounded-xl border border-mckinsey-border hover:border-mckinsey-teal/30 transition"
             >
               <div className="flex items-start justify-between">
                 <div className="flex-1">
                   <div className="flex items-center gap-2 mb-1">
-                    <span className="text-xs font-bold px-2 py-0.5 rounded bg-primary-100 dark:bg-primary-900/30 text-primary-700 dark:text-primary-300">
+                    <span className="text-xs font-bold px-2 py-0.5 rounded bg-mckinsey-teal/10 text-mckinsey-teal">
                       #{i + 1}
                     </span>
                     <h3 className="font-semibold">{rec.tool.nameZh}</h3>
                   </div>
-                  <p className="text-sm text-surface-700/60 dark:text-surface-200/40 mb-2">
+                  <p className="text-sm text-mckinsey-muted mb-2">
                     💡 推荐理由：{rec.reason}
                   </p>
-                  <p className="text-sm text-surface-700 dark:text-surface-200 line-clamp-2">
+                  <p className="text-sm text-mckinsey-navy line-clamp-2">
                     {rec.tool.descriptionZh}
                   </p>
                 </div>
                 <div className="flex gap-2 ml-4 flex-shrink-0">
                   <Link
                     to={`/tools/${rec.tool.id}`}
-                    className="px-3 py-1.5 rounded-lg border border-surface-200 dark:border-surface-800 text-sm hover:border-primary-300 transition"
+                    className="px-3 py-1.5 rounded-lg border border-mckinsey-border text-sm hover:border-mckinsey-teal/30 transition"
                   >
                     详情
                   </Link>
                   {rec.tool.hasInteractive && (
                     <Link
                       to={rec.tool.interactivePath!}
-                      className="px-3 py-1.5 rounded-lg bg-primary-600 text-white text-sm hover:bg-primary-700 transition"
+                      className="px-3 py-1.5 rounded-lg bg-mckinsey-teal text-white text-sm hover:bg-mckinsey-teal transition"
                     >
                       ⚒️ 使用
                     </Link>
@@ -179,7 +179,7 @@ export default function RecommendPage() {
       )}
 
       {results.length === 0 && query && (
-        <div className="text-center p-8 text-surface-700/50 dark:text-surface-200/30">
+        <div className="text-center p-8 text-mckinsey-muted">
           没有找到匹配的工具。请尝试使用不同的关键词描述你的问题。
         </div>
       )}

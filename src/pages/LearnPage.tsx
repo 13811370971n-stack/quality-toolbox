@@ -29,12 +29,12 @@ export default function LearnPage() {
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
       <h1 className="text-3xl font-bold mb-2">📚 学习路径</h1>
-      <p className="text-surface-700/60 dark:text-surface-200/40 mb-6">
+      <p className="text-mckinsey-muted mb-6">
         选择你的学习模式，按自己的节奏掌握质量工具。
       </p>
 
       {/* Mode Tabs */}
-      <div className="flex gap-1 p-1 rounded-lg bg-surface-100 dark:bg-surface-800 mb-8 w-fit">
+      <div className="flex gap-1 p-1 rounded-lg bg-mckinsey-light mb-8 w-fit">
         {[
           { key: 'self' as Mode, label: '📖 自学参考' },
           { key: 'guided' as Mode, label: '🗺️ 引导式学习' },
@@ -45,8 +45,8 @@ export default function LearnPage() {
             onClick={() => setMode(tab.key)}
             className={`px-4 py-2 rounded-md text-sm font-medium transition-colors ${
               mode === tab.key
-                ? 'bg-white dark:bg-surface-900 text-primary-600 dark:text-primary-400 shadow-sm'
-                : 'text-surface-700 dark:text-surface-200 hover:text-primary-600'
+                ? 'bg-white text-mckinsey-teal shadow-sm'
+                : 'text-mckinsey-navy hover:text-mckinsey-teal'
             }`}
           >
             {tab.label}
@@ -57,11 +57,11 @@ export default function LearnPage() {
       {/* Self-Study Mode */}
       {mode === 'self' && (
         <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }}>
-          <div className="p-6 rounded-xl border border-surface-200 dark:border-surface-800 text-center">
+          <div className="p-6 rounded-xl border border-mckinsey-border text-center">
             <p className="text-lg mb-4">自由浏览所有质量工具，按需学习。</p>
             <Link
               to="/tools"
-              className="inline-flex items-center gap-2 px-6 py-3 rounded-lg bg-primary-600 hover:bg-primary-700 text-white font-medium transition-colors"
+              className="inline-flex items-center gap-2 px-6 py-3 rounded-lg bg-mckinsey-teal hover:bg-mckinsey-teal text-white font-medium transition-colors"
             >
               🧰 进入工具库
             </Link>
@@ -73,18 +73,18 @@ export default function LearnPage() {
       {mode === 'guided' && (
         <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }}>
           {/* Progress */}
-          <div className="mb-8 p-4 rounded-xl border border-surface-200 dark:border-surface-800">
+          <div className="mb-8 p-4 rounded-xl border border-mckinsey-border">
             <div className="flex items-center justify-between mb-2">
               <span className="text-sm font-medium">学习进度</span>
-              <span className="text-sm text-surface-700/60 dark:text-surface-200/40">
+              <span className="text-sm text-mckinsey-muted">
                 {completedTools.length}/{allToolIds.length} 工具
               </span>
             </div>
-            <div className="h-2 rounded-full bg-surface-200 dark:bg-surface-800 overflow-hidden">
+            <div className="h-2 rounded-full bg-mckinsey-border overflow-hidden">
               <motion.div
                 initial={{ width: 0 }}
                 animate={{ width: `${progressPercent}%` }}
-                className="h-full rounded-full bg-gradient-to-r from-primary-500 to-primary-600"
+                className="h-full rounded-full bg-gradient-to-r from-mckinsey-teal to-cyan-500"
               />
             </div>
           </div>
@@ -96,7 +96,7 @@ export default function LearnPage() {
               return (
                 <div
                   key={phase.id}
-                  className="p-5 rounded-xl border border-surface-200 dark:border-surface-800"
+                  className="p-5 rounded-xl border border-mckinsey-border"
                 >
                   <div className="flex items-center gap-3 mb-4">
                     <div
@@ -109,7 +109,7 @@ export default function LearnPage() {
                       <h3 className="font-semibold" style={{ color: phase.color }}>
                         {phase.id} · {phase.nameZh} ({phase.name})
                       </h3>
-                      <p className="text-xs text-surface-700/60 dark:text-surface-200/40">
+                      <p className="text-xs text-mckinsey-muted">
                         {phase.description}
                       </p>
                     </div>
@@ -120,7 +120,7 @@ export default function LearnPage() {
                       return (
                         <div
                           key={tool.id}
-                          className="flex items-center justify-between p-3 rounded-lg bg-surface-50 dark:bg-surface-800/50"
+                          className="flex items-center justify-between p-3 rounded-lg bg-mckinsey-light/50"
                         >
                           <div className="flex items-center gap-3">
                             <button
@@ -128,14 +128,14 @@ export default function LearnPage() {
                               className={`w-5 h-5 rounded border-2 flex items-center justify-center transition ${
                                 isComplete
                                   ? 'bg-green-500 border-green-500 text-white'
-                                  : 'border-surface-700/30 dark:border-surface-200/30'
+                                  : 'border-surface-700/30'
                               }`}
                             >
                               {isComplete && '✓'}
                             </button>
                             <Link
                               to={`/tools/${tool.id}`}
-                              className={`text-sm font-medium hover:text-primary-600 transition ${
+                              className={`text-sm font-medium hover:text-mckinsey-teal transition ${
                                 isComplete ? 'line-through opacity-60' : ''
                               }`}
                             >
@@ -145,7 +145,7 @@ export default function LearnPage() {
                           {tool.hasInteractive && (
                             <Link
                               to={tool.interactivePath!}
-                              className="text-xs px-2 py-1 rounded bg-primary-100 dark:bg-primary-900/30 text-primary-700 dark:text-primary-300"
+                              className="text-xs px-2 py-1 rounded bg-mckinsey-teal/10 text-mckinsey-teal"
                             >
                               ⚒️ 练习
                             </Link>
@@ -164,9 +164,9 @@ export default function LearnPage() {
       {/* Project Simulation Mode */}
       {mode === 'project' && (
         <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }}>
-          <div className="p-6 rounded-xl border border-surface-200 dark:border-surface-800 mb-6">
+          <div className="p-6 rounded-xl border border-mckinsey-border mb-6">
             <h2 className="text-xl font-semibold mb-2">🏭 项目案例：{projectCase.title}</h2>
-            <p className="text-surface-700/60 dark:text-surface-200/40">
+            <p className="text-mckinsey-muted">
               模拟一个完整的六西格玛改进项目，在每个 DMAIC 阶段使用对应的质量工具。
             </p>
           </div>
@@ -204,12 +204,12 @@ export default function LearnPage() {
             key={projectPhase}
             initial={{ opacity: 0, x: 10 }}
             animate={{ opacity: 1, x: 0 }}
-            className="p-6 rounded-xl border border-surface-200 dark:border-surface-800"
+            className="p-6 rounded-xl border border-mckinsey-border"
           >
             <h3 className="text-lg font-semibold mb-3">
               阶段 {projectPhase + 1}: {dmaicPhases[projectPhase].nameZh}
             </h3>
-            <p className="text-surface-700 dark:text-surface-200 mb-4">
+            <p className="text-mckinsey-navy mb-4">
               {projectCase.phases[projectPhase].desc}
             </p>
             <h4 className="font-medium mb-2">推荐使用工具：</h4>
@@ -221,7 +221,7 @@ export default function LearnPage() {
                   <Link
                     key={toolId}
                     to={tool.interactivePath || `/tools/${toolId}`}
-                    className="px-3 py-2 rounded-lg border border-primary-200 dark:border-primary-800 text-sm text-primary-700 dark:text-primary-300 hover:bg-primary-50 dark:hover:bg-primary-900/20 transition"
+                    className="px-3 py-2 rounded-lg border border-mckinsey-teal/20 text-sm text-mckinsey-teal hover:bg-mckinsey-teal/5 transition"
                   >
                     ⚒️ {tool.nameZh}
                   </Link>
@@ -231,7 +231,7 @@ export default function LearnPage() {
             {projectPhase < projectCase.phases.length - 1 && (
               <button
                 onClick={() => setProjectPhase((p) => p + 1)}
-                className="mt-6 px-5 py-2.5 rounded-lg bg-primary-600 hover:bg-primary-700 text-white font-medium transition-colors"
+                className="mt-6 px-5 py-2.5 rounded-lg bg-mckinsey-teal hover:bg-mckinsey-teal text-white font-medium transition-colors"
               >
                 下一阶段 →
               </button>

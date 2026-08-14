@@ -20,9 +20,9 @@ export default function ToolsPage() {
   })
 
   const difficultyColor = {
-    beginner: 'bg-green-100 text-green-700 dark:bg-green-900/30 dark:text-green-300',
-    intermediate: 'bg-yellow-100 text-yellow-700 dark:bg-yellow-900/30 dark:text-yellow-300',
-    advanced: 'bg-red-100 text-red-700 dark:bg-red-900/30 dark:text-red-300',
+    beginner: 'bg-green-100 text-green-700',
+    intermediate: 'bg-yellow-100 text-yellow-700',
+    advanced: 'bg-red-100 text-red-700',
   }
 
   const difficultyLabel = {
@@ -42,12 +42,12 @@ export default function ToolsPage() {
           placeholder="搜索工具名称、描述..."
           value={query}
           onChange={(e) => setQuery(e.target.value)}
-          className="flex-1 px-4 py-2.5 rounded-lg border border-surface-200 dark:border-surface-800 bg-white dark:bg-surface-900 focus:outline-none focus:ring-2 focus:ring-primary-500 transition"
+          className="flex-1 px-4 py-2.5 rounded-lg border border-mckinsey-border bg-white focus:outline-none focus:ring-2 focus:ring-mckinsey-teal transition"
         />
         <select
           value={phaseFilter}
           onChange={(e) => setPhaseFilter(e.target.value as DmaicPhase | '')}
-          className="px-4 py-2.5 rounded-lg border border-surface-200 dark:border-surface-800 bg-white dark:bg-surface-900 focus:outline-none focus:ring-2 focus:ring-primary-500"
+          className="px-4 py-2.5 rounded-lg border border-mckinsey-border bg-white focus:outline-none focus:ring-2 focus:ring-mckinsey-teal"
         >
           <option value="">所有阶段</option>
           {phases.map((p) => (
@@ -59,7 +59,7 @@ export default function ToolsPage() {
         <select
           value={categoryFilter}
           onChange={(e) => setCategoryFilter(e.target.value)}
-          className="px-4 py-2.5 rounded-lg border border-surface-200 dark:border-surface-800 bg-white dark:bg-surface-900 focus:outline-none focus:ring-2 focus:ring-primary-500"
+          className="px-4 py-2.5 rounded-lg border border-mckinsey-border bg-white focus:outline-none focus:ring-2 focus:ring-mckinsey-teal"
         >
           <option value="">所有类别</option>
           {categories.map((c) => (
@@ -69,7 +69,7 @@ export default function ToolsPage() {
       </div>
 
       {/* Results count */}
-      <p className="text-sm text-surface-700/60 dark:text-surface-200/40 mb-4">
+      <p className="text-sm text-mckinsey-muted mb-4">
         显示 {filtered.length} 个工具
       </p>
 
@@ -84,20 +84,20 @@ export default function ToolsPage() {
           >
             <Link
               to={`/tools/${tool.id}`}
-              className="block p-5 rounded-xl border border-surface-200 dark:border-surface-800 hover:border-primary-300 dark:hover:border-primary-700 transition-all hover:shadow-lg hover:shadow-primary-500/5 h-full group"
+              className="block p-5 rounded-xl border border-mckinsey-border hover:border-mckinsey-teal/30 transition-all hover:shadow-lg hover:shadow-mckinsey-teal/5 h-full group"
             >
               <div className="flex items-start justify-between mb-3">
-                <h3 className="font-semibold group-hover:text-primary-600 dark:group-hover:text-primary-400 transition-colors">
+                <h3 className="font-semibold group-hover:text-mckinsey-teal transition-colors">
                   {tool.nameZh}
                 </h3>
                 <span className={`text-xs px-2 py-0.5 rounded-full ${difficultyColor[tool.difficulty]}`}>
                   {difficultyLabel[tool.difficulty]}
                 </span>
               </div>
-              <p className="text-xs text-surface-700/50 dark:text-surface-200/30 mb-2 font-mono">
+              <p className="text-xs text-mckinsey-muted mb-2 font-mono">
                 {tool.name}
               </p>
-              <p className="text-sm text-surface-700/70 dark:text-surface-200/50 line-clamp-2 mb-3">
+              <p className="text-sm text-mckinsey-muted line-clamp-2 mb-3">
                 {tool.descriptionZh}
               </p>
               <div className="flex items-center gap-2 flex-wrap">
@@ -117,7 +117,7 @@ export default function ToolsPage() {
                   )
                 })}
                 {tool.hasInteractive && (
-                  <span className="text-xs px-2 py-0.5 rounded bg-primary-100 dark:bg-primary-900/30 text-primary-700 dark:text-primary-300">
+                  <span className="text-xs px-2 py-0.5 rounded bg-mckinsey-teal/10 text-mckinsey-teal">
                     ⚒️ 可交互
                   </span>
                 )}

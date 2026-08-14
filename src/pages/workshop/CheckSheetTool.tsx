@@ -61,13 +61,13 @@ export default function CheckSheetTool() {
       <div className="flex items-center justify-between mb-6">
         <div>
           <h1 className="text-3xl font-bold">☑️ 检查表</h1>
-          <p className="text-sm text-surface-700/60 dark:text-surface-200/40">
+          <p className="text-sm text-mckinsey-muted">
             点击单元格计数，自动汇总统计
           </p>
         </div>
         <button
           onClick={resetAll}
-          className="px-4 py-2 rounded-lg border border-red-200 dark:border-red-800 text-red-600 text-sm hover:bg-red-50 dark:hover:bg-red-900/20 transition"
+          className="px-4 py-2 rounded-lg border border-red-200 text-red-600 text-sm hover:bg-red-50 transition"
         >
           🗑️ 清零
         </button>
@@ -79,15 +79,15 @@ export default function CheckSheetTool() {
           type="text"
           value={title}
           onChange={(e) => setTitle(e.target.value)}
-          className="text-xl font-semibold px-3 py-1 rounded border border-transparent hover:border-surface-200 dark:hover:border-surface-800 bg-transparent focus:outline-none focus:border-primary-500 w-full"
+          className="text-xl font-semibold px-3 py-1 rounded border border-transparent hover:border-mckinsey-border bg-transparent focus:outline-none focus:border-mckinsey-teal w-full"
         />
       </div>
 
       {/* Table */}
-      <div className="overflow-x-auto rounded-xl border border-surface-200 dark:border-surface-800 mb-6">
+      <div className="overflow-x-auto rounded-xl border border-mckinsey-border mb-6">
         <table className="w-full text-sm">
           <thead>
-            <tr className="bg-surface-100 dark:bg-surface-800">
+            <tr className="bg-mckinsey-light">
               <th className="px-4 py-3 text-left font-medium">缺陷类别</th>
               {columns.map((col, ci) => (
                 <th key={ci} className="px-4 py-3 text-center font-medium min-w-[80px]">
@@ -112,7 +112,7 @@ export default function CheckSheetTool() {
                 key={row.id}
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
-                className="border-t border-surface-200 dark:border-surface-800"
+                className="border-t border-mckinsey-border"
               >
                 <td className="px-4 py-2">
                   <div className="flex items-center gap-2">
@@ -139,39 +139,39 @@ export default function CheckSheetTool() {
                     <div className="flex items-center justify-center gap-1">
                       <button
                         onClick={() => decrement(ri, ci)}
-                        className="w-6 h-6 rounded text-xs bg-surface-100 dark:bg-surface-800 hover:bg-red-100 dark:hover:bg-red-900/30 transition"
+                        className="w-6 h-6 rounded text-xs bg-mckinsey-light hover:bg-red-100 transition"
                       >
                         -
                       </button>
                       <button
                         onClick={() => increment(ri, ci)}
-                        className="w-10 h-8 rounded font-mono text-sm font-bold bg-surface-50 dark:bg-surface-800/50 hover:bg-primary-100 dark:hover:bg-primary-900/30 transition cursor-pointer"
+                        className="w-10 h-8 rounded font-mono text-sm font-bold bg-mckinsey-light/50 hover:bg-mckinsey-teal/10 transition cursor-pointer"
                       >
                         {count}
                       </button>
                       <button
                         onClick={() => increment(ri, ci)}
-                        className="w-6 h-6 rounded text-xs bg-surface-100 dark:bg-surface-800 hover:bg-green-100 dark:hover:bg-green-900/30 transition"
+                        className="w-6 h-6 rounded text-xs bg-mckinsey-light hover:bg-green-100 transition"
                       >
                         +
                       </button>
                     </div>
                   </td>
                 ))}
-                <td className="px-4 py-2 text-center font-bold text-primary-600 dark:text-primary-400">
+                <td className="px-4 py-2 text-center font-bold text-mckinsey-teal">
                   {rowTotals[ri]}
                 </td>
               </motion.tr>
             ))}
             {/* Column totals */}
-            <tr className="border-t-2 border-surface-200 dark:border-surface-800 bg-surface-50 dark:bg-surface-800/30">
+            <tr className="border-t-2 border-mckinsey-border bg-mckinsey-light/50">
               <td className="px-4 py-3 font-bold">合计</td>
               {colTotals.map((total, ci) => (
                 <td key={ci} className="px-4 py-3 text-center font-bold">
                   {total}
                 </td>
               ))}
-              <td className="px-4 py-3 text-center font-bold text-primary-600 dark:text-primary-400 text-lg">
+              <td className="px-4 py-3 text-center font-bold text-mckinsey-teal text-lg">
                 {grandTotal}
               </td>
             </tr>
@@ -183,13 +183,13 @@ export default function CheckSheetTool() {
       <div className="flex gap-3">
         <button
           onClick={addRow}
-          className="px-4 py-2 rounded-lg border border-surface-200 dark:border-surface-800 text-sm hover:border-primary-300 dark:hover:border-primary-700 transition"
+          className="px-4 py-2 rounded-lg border border-mckinsey-border text-sm hover:border-mckinsey-teal/30 transition"
         >
           + 添加行
         </button>
         <button
           onClick={addColumn}
-          className="px-4 py-2 rounded-lg border border-surface-200 dark:border-surface-800 text-sm hover:border-primary-300 dark:hover:border-primary-700 transition"
+          className="px-4 py-2 rounded-lg border border-mckinsey-border text-sm hover:border-mckinsey-teal/30 transition"
         >
           + 添加列
         </button>
@@ -197,26 +197,26 @@ export default function CheckSheetTool() {
 
       {/* Summary stats */}
       {grandTotal > 0 && (
-        <div className="mt-8 p-4 rounded-xl border border-surface-200 dark:border-surface-800">
+        <div className="mt-8 p-4 rounded-xl border border-mckinsey-border">
           <h3 className="font-semibold mb-3">📊 数据摘要</h3>
           <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 text-center">
             <div>
-              <div className="text-2xl font-bold text-primary-600 dark:text-primary-400">{grandTotal}</div>
-              <div className="text-xs text-surface-700/60 dark:text-surface-200/40">总计数</div>
+              <div className="text-2xl font-bold text-mckinsey-teal">{grandTotal}</div>
+              <div className="text-xs text-mckinsey-muted">总计数</div>
             </div>
             <div>
               <div className="text-2xl font-bold">{rows.length}</div>
-              <div className="text-xs text-surface-700/60 dark:text-surface-200/40">缺陷类别</div>
+              <div className="text-xs text-mckinsey-muted">缺陷类别</div>
             </div>
             <div>
               <div className="text-2xl font-bold">{columns.length}</div>
-              <div className="text-xs text-surface-700/60 dark:text-surface-200/40">时间段</div>
+              <div className="text-xs text-mckinsey-muted">时间段</div>
             </div>
             <div>
               <div className="text-2xl font-bold">
                 {rows.length > 0 ? rows[rowTotals.indexOf(Math.max(...rowTotals))].label : '-'}
               </div>
-              <div className="text-xs text-surface-700/60 dark:text-surface-200/40">最多缺陷类型</div>
+              <div className="text-xs text-mckinsey-muted">最多缺陷类型</div>
             </div>
           </div>
         </div>

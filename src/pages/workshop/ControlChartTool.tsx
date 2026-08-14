@@ -143,50 +143,50 @@ export default function ControlChartTool() {
   return (
     <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
       <h1 className="text-3xl font-bold mb-2">📈 控制图</h1>
-      <p className="text-sm text-surface-700/60 dark:text-surface-200/40 mb-6">
+      <p className="text-sm text-mckinsey-muted mb-6">
         输入数据，自动计算控制限并绘制控制图。超出控制限的点标红。
       </p>
 
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
         {/* Data Input */}
         <div className="lg:col-span-1">
-          <div className="p-4 rounded-xl border border-surface-200 dark:border-surface-800">
+          <div className="p-4 rounded-xl border border-mckinsey-border">
             <h3 className="font-semibold mb-3">数据输入</h3>
             <div className="flex gap-2 mb-3">
               <button
                 onClick={() => setChartType('i-mr')}
-                className={`px-3 py-1.5 rounded text-xs font-medium transition ${chartType === 'i-mr' ? 'bg-primary-100 dark:bg-primary-900/30 text-primary-700 dark:text-primary-300' : 'bg-surface-100 dark:bg-surface-800'}`}
+                className={`px-3 py-1.5 rounded text-xs font-medium transition ${chartType === 'i-mr' ? 'bg-mckinsey-teal/10 text-mckinsey-teal' : 'bg-mckinsey-light'}`}
               >
                 I-MR图
               </button>
               <button
                 onClick={() => setChartType('xbar-r')}
-                className={`px-3 py-1.5 rounded text-xs font-medium transition ${chartType === 'xbar-r' ? 'bg-primary-100 dark:bg-primary-900/30 text-primary-700 dark:text-primary-300' : 'bg-surface-100 dark:bg-surface-800'}`}
+                className={`px-3 py-1.5 rounded text-xs font-medium transition ${chartType === 'xbar-r' ? 'bg-mckinsey-teal/10 text-mckinsey-teal' : 'bg-mckinsey-light'}`}
               >
                 X̄-R图
               </button>
             </div>
             {chartType === 'xbar-r' && (
               <div className="mb-3">
-                <label className="text-xs text-surface-700/60 dark:text-surface-200/40 block mb-1">子组大小 (n):</label>
+                <label className="text-xs text-mckinsey-muted block mb-1">子组大小 (n):</label>
                 <input
                   type="number"
                   min={2}
                   max={10}
                   value={subgroupSize}
                   onChange={(e) => setSubgroupSize(Number(e.target.value))}
-                  className="w-full px-3 py-1.5 rounded border border-surface-200 dark:border-surface-800 bg-white dark:bg-surface-900 text-sm focus:outline-none focus:ring-1 focus:ring-primary-500"
+                  className="w-full px-3 py-1.5 rounded border border-mckinsey-border bg-white text-sm focus:outline-none focus:ring-1 focus:ring-mckinsey-teal"
                 />
               </div>
             )}
-            <label className="text-xs text-surface-700/60 dark:text-surface-200/40 block mb-1">每行一个数据点：</label>
+            <label className="text-xs text-mckinsey-muted block mb-1">每行一个数据点：</label>
             <textarea
               value={rawData}
               onChange={(e) => setRawData(e.target.value)}
               rows={15}
-              className="w-full px-3 py-2 rounded-lg border border-surface-200 dark:border-surface-800 bg-white dark:bg-surface-900 text-sm font-mono focus:outline-none focus:ring-1 focus:ring-primary-500 resize-none"
+              className="w-full px-3 py-2 rounded-lg border border-mckinsey-border bg-white text-sm font-mono focus:outline-none focus:ring-1 focus:ring-mckinsey-teal resize-none"
             />
-            <p className="text-xs text-surface-700/60 dark:text-surface-200/40 mt-2">
+            <p className="text-xs text-mckinsey-muted mt-2">
               数据点数: {parseData().length}
             </p>
           </div>
@@ -194,12 +194,12 @@ export default function ControlChartTool() {
 
         {/* Chart */}
         <div className="lg:col-span-2">
-          <div className="p-4 rounded-xl border border-surface-200 dark:border-surface-800 bg-white dark:bg-surface-900">
+          <div className="p-4 rounded-xl border border-mckinsey-border bg-white">
             <svg ref={chartRef} className="w-full" style={{ minHeight: 300 }} />
           </div>
-          <div className="mt-4 p-4 rounded-xl border border-surface-200 dark:border-surface-800">
+          <div className="mt-4 p-4 rounded-xl border border-mckinsey-border">
             <h3 className="font-semibold mb-2 text-sm">判异规则 (Western Electric Rules)</h3>
-            <ul className="text-xs text-surface-700/60 dark:text-surface-200/40 space-y-1">
+            <ul className="text-xs text-mckinsey-muted space-y-1">
               <li>🔴 规则1: 单点超出控制限（±3σ）</li>
               <li>⚠️ 规则2: 连续9点在中心线同一侧</li>
               <li>⚠️ 规则3: 连续6点递增或递减</li>

@@ -126,39 +126,39 @@ export default function FishboneTool() {
       <div className="flex items-center justify-between mb-6">
         <div>
           <h1 className="text-3xl font-bold">🐟 鱼骨图</h1>
-          <p className="text-sm text-surface-700/60 dark:text-surface-200/40">
+          <p className="text-sm text-mckinsey-muted">
             因果图 / Ishikawa Diagram — 分析问题的根本原因
           </p>
         </div>
         <button
           onClick={resetAll}
-          className="px-4 py-2 rounded-lg border border-red-200 dark:border-red-800 text-red-600 text-sm hover:bg-red-50 dark:hover:bg-red-900/20 transition"
+          className="px-4 py-2 rounded-lg border border-red-200 text-red-600 text-sm hover:bg-red-50 transition"
         >
           🗑️ 重置
         </button>
       </div>
 
       {/* Problem Input */}
-      <div className="mb-6 p-4 rounded-xl border border-surface-200 dark:border-surface-800">
+      <div className="mb-6 p-4 rounded-xl border border-mckinsey-border">
         <label className="text-sm font-medium mb-2 block">🎯 问题/效果（鱼头）：</label>
         <input
           type="text"
           value={problem}
           onChange={(e) => setProblem(e.target.value)}
           placeholder="输入要分析的问题，例如：产品表面划伤率高"
-          className="w-full px-4 py-2.5 rounded-lg border border-surface-200 dark:border-surface-800 bg-white dark:bg-surface-900 focus:outline-none focus:ring-2 focus:ring-primary-500"
+          className="w-full px-4 py-2.5 rounded-lg border border-mckinsey-border bg-white focus:outline-none focus:ring-2 focus:ring-mckinsey-teal"
         />
       </div>
 
       {/* Fishbone SVG */}
-      <div className="mb-6 rounded-xl border border-surface-200 dark:border-surface-800 overflow-x-auto bg-white dark:bg-surface-900 p-4">
+      <div className="mb-6 rounded-xl border border-mckinsey-border overflow-x-auto bg-white p-4">
         <svg viewBox={`0 0 ${svgW} ${svgH}`} className="w-full min-w-[700px]" style={{ maxHeight: 500 }}>
           {/* Main bone */}
-          <line x1={tailX} y1={centerY} x2={headX} y2={centerY} stroke="currentColor" strokeWidth={3} className="text-surface-700 dark:text-surface-200" />
+          <line x1={tailX} y1={centerY} x2={headX} y2={centerY} stroke="currentColor" strokeWidth={3} className="text-mckinsey-navy" />
           
           {/* Fish head */}
-          <ellipse cx={headX + 30} cy={centerY} rx={50} ry={35} fill="none" stroke="currentColor" strokeWidth={2} className="text-primary-500" />
-          <text x={headX + 30} y={centerY + 4} textAnchor="middle" className="text-xs fill-current text-primary-600 dark:text-primary-400" fontSize="11">
+          <ellipse cx={headX + 30} cy={centerY} rx={50} ry={35} fill="none" stroke="currentColor" strokeWidth={2} className="text-mckinsey-teal" />
+          <text x={headX + 30} y={centerY + 4} textAnchor="middle" className="text-xs fill-current text-mckinsey-teal" fontSize="11">
             {problem || '问题?'}
           </text>
 
@@ -221,13 +221,13 @@ export default function FishboneTool() {
             key={cat.id}
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
-            className="p-4 rounded-xl border border-surface-200 dark:border-surface-800"
+            className="p-4 rounded-xl border border-mckinsey-border"
           >
             <input
               type="text"
               value={cat.name}
               onChange={(e) => updateCategoryName(cat.id, e.target.value)}
-              className="w-full font-semibold text-sm mb-3 px-2 py-1 rounded border border-transparent hover:border-surface-200 dark:hover:border-surface-800 bg-transparent focus:outline-none focus:border-primary-500"
+              className="w-full font-semibold text-sm mb-3 px-2 py-1 rounded border border-transparent hover:border-mckinsey-border bg-transparent focus:outline-none focus:border-mckinsey-teal"
             />
             <div className="space-y-2 mb-3">
               {cat.causes.map((cause) => (
@@ -237,18 +237,18 @@ export default function FishboneTool() {
                       type="text"
                       value={cause.text}
                       onChange={(e) => updateCause(cat.id, cause.id, e.target.value)}
-                      className="flex-1 text-xs px-2 py-1 rounded border border-surface-200 dark:border-surface-800 bg-white dark:bg-surface-900 focus:outline-none focus:ring-1 focus:ring-primary-500"
+                      className="flex-1 text-xs px-2 py-1 rounded border border-mckinsey-border bg-white focus:outline-none focus:ring-1 focus:ring-mckinsey-teal"
                     />
                     <button
                       onClick={() => addSubCause(cat.id, cause.id)}
-                      className="text-xs px-1.5 py-0.5 text-primary-600 hover:bg-primary-50 dark:hover:bg-primary-900/20 rounded"
+                      className="text-xs px-1.5 py-0.5 text-mckinsey-teal hover:bg-mckinsey-teal/5 rounded"
                       title="添加子原因"
                     >
                       +子
                     </button>
                     <button
                       onClick={() => removeCause(cat.id, cause.id)}
-                      className="text-xs px-1.5 py-0.5 text-red-500 hover:bg-red-50 dark:hover:bg-red-900/20 rounded"
+                      className="text-xs px-1.5 py-0.5 text-red-500 hover:bg-red-50 rounded"
                     >
                       ✕
                     </button>
@@ -261,7 +261,7 @@ export default function FishboneTool() {
                           type="text"
                           value={sub.text}
                           onChange={(e) => updateSubCause(cat.id, cause.id, sub.id, e.target.value)}
-                          className="w-full text-xs px-2 py-0.5 rounded border border-surface-200/50 dark:border-surface-800/50 bg-surface-50 dark:bg-surface-800/30 focus:outline-none focus:ring-1 focus:ring-primary-500"
+                          className="w-full text-xs px-2 py-0.5 rounded border border-mckinsey-border/50 bg-mckinsey-light/50 focus:outline-none focus:ring-1 focus:ring-mckinsey-teal"
                         />
                       ))}
                     </div>
@@ -271,7 +271,7 @@ export default function FishboneTool() {
             </div>
             <button
               onClick={() => addCause(cat.id)}
-              className="w-full text-xs px-3 py-1.5 rounded-lg border border-dashed border-surface-200 dark:border-surface-800 hover:border-primary-300 dark:hover:border-primary-700 text-surface-700/60 dark:text-surface-200/40 hover:text-primary-600 transition"
+              className="w-full text-xs px-3 py-1.5 rounded-lg border border-dashed border-mckinsey-border hover:border-mckinsey-teal/30 text-mckinsey-muted hover:text-mckinsey-teal transition"
             >
               + 添加原因
             </button>

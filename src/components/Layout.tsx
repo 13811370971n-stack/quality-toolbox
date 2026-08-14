@@ -1,91 +1,72 @@
-import { useEffect } from 'react'
 import { Link, useLocation } from 'react-router-dom'
 import { motion } from 'framer-motion'
-import { useThemeStore } from '../store/themeStore'
 
 const navItems = [
-  { path: '/', label: '首页', icon: '🏠' },
-  { path: '/graph', label: '知识图谱', icon: '🗺️' },
-  { path: '/tools', label: '工具库', icon: '🧰' },
-  { path: '/workshop', label: '交互工坊', icon: '⚒️' },
-  { path: '/learn', label: '学习路径', icon: '📚' },
-  { path: '/recommend', label: '智能推荐', icon: '🎯' },
+  { path: '/', label: '首页' },
+  { path: '/graph', label: '知识图谱' },
+  { path: '/tools', label: '工具库' },
+  { path: '/workshop', label: '交互工坊' },
+  { path: '/learn', label: '学习路径' },
+  { path: '/recommend', label: '智能推荐' },
 ]
 
 export default function Layout({ children }: { children: React.ReactNode }) {
-  const { isDark, toggle } = useThemeStore()
   const location = useLocation()
 
-  useEffect(() => {
-    document.documentElement.classList.toggle('dark', isDark)
-  }, [isDark])
-
   return (
-    <div className="min-h-screen flex flex-col">
-      {/* Top Navigation */}
-      <header className="sticky top-0 z-50 glass border-b border-surface-200 dark:border-surface-800">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex items-center justify-between h-16">
-            {/* Logo */}
-            <Link to="/" className="flex items-center gap-3 group">
-              <div className="w-9 h-9 rounded-lg bg-gradient-to-br from-primary-500 to-primary-700 flex items-center justify-center text-white font-bold text-sm shadow-lg shadow-primary-500/25 group-hover:shadow-primary-500/40 transition-shadow">
-                QT
-              </div>
-              <span className="font-semibold text-lg hidden sm:block">
-                Quality Toolbox
-              </span>
-            </Link>
+    <div className="min-h-screen flex flex-col bg-mckinsey-light">
+      {/* Top Navigation - matches ai-quality-portal Navbar */}
+      <header className="fixed top-0 w-full z-50 bg-white/80 backdrop-blur-xl border-b border-mckinsey-border/50 shadow-sm">
+        <nav className="max-w-7xl mx-auto px-6 lg:px-16 h-16 flex items-center justify-between">
+          {/* Logo */}
+          <Link to="/" className="flex items-center gap-3 group">
+            <div className="w-9 h-9 rounded-lg bg-gradient-to-br from-mckinsey-teal to-cyan-500 flex items-center justify-center text-white font-bold text-sm shadow-md group-hover:shadow-lg transition-shadow">
+              QT
+            </div>
+            <span className="font-semibold text-mckinsey-navy hidden sm:block">
+              质量工具箱
+            </span>
+          </Link>
 
-            {/* Nav Links */}
-            <nav className="hidden md:flex items-center gap-1">
-              {navItems.map((item) => {
-                const isActive = location.pathname === item.path || 
-                  (item.path !== '/' && location.pathname.startsWith(item.path))
-                return (
-                  <Link
-                    key={item.path}
-                    to={item.path}
-                    className={`relative px-3 py-2 rounded-lg text-sm font-medium transition-colors ${
-                      isActive
-                        ? 'text-primary-600 dark:text-primary-400'
-                        : 'text-surface-700 dark:text-surface-200 hover:text-primary-600 dark:hover:text-primary-400'
-                    }`}
-                  >
-                    <span className="mr-1.5">{item.icon}</span>
-                    {item.label}
-                    {isActive && (
-                      <motion.div
-                        layoutId="nav-indicator"
-                        className="absolute bottom-0 left-2 right-2 h-0.5 bg-primary-500 rounded-full"
-                        transition={{ type: 'spring', stiffness: 500, damping: 30 }}
-                      />
-                    )}
-                  </Link>
-                )
-              })}
-            </nav>
-
-            {/* Theme Toggle */}
-            <button
-              onClick={toggle}
-              className="p-2 rounded-lg hover:bg-surface-200 dark:hover:bg-surface-800 transition-colors"
-              aria-label="Toggle theme"
-            >
-              <motion.span
-                key={isDark ? 'moon' : 'sun'}
-                initial={{ rotate: -90, opacity: 0 }}
-                animate={{ rotate: 0, opacity: 1 }}
-                exit={{ rotate: 90, opacity: 0 }}
-                className="text-xl block"
-              >
-                {isDark ? '🌙' : '☀️'}
-              </motion.span>
-            </button>
+          {/* Nav Links */}
+          <div className="hidden md:flex items-center gap-1">
+            {navItems.map((item) => {
+              const isActive = location.pathname === item.path ||
+                (item.path !== '/' && location.pathname.startsWith(item.path))
+              return (
+                <Link
+                  key={item.path}
+                  to={item.path}
+                  className={`relative px-3 py-2 rounded-lg text-sm font-medium transition-colors ${
+                    isActive
+                      ? 'text-mckinsey-navy border-b-2 border-mckinsey-teal'
+                      : 'text-mckinsey-muted hover:text-mckinsey-navy'
+                  }`}
+                >
+                  {item.label}
+                  {isActive && (
+                    <motion.div
+                      layoutId="nav-indicator"
+                      className="absolute bottom-0 left-3 right-3 h-0.5 bg-mckinsey-teal rounded-full"
+                      transition={{ type: 'spring', stiffness: 500, damping: 30 }}
+                    />
+                  )}
+                </Link>
+              )
+            })}
           </div>
-        </div>
+
+          {/* Back to main portal */}
+          <a
+            href="/methodology"
+            className="text-xs text-mckinsey-muted hover:text-mckinsey-navy transition-colors"
+          >
+            ← 返回主站
+          </a>
+        </nav>
 
         {/* Mobile Nav */}
-        <nav className="md:hidden flex overflow-x-auto px-4 pb-2 gap-1 scrollbar-hide">
+        <nav className="md:hidden flex overflow-x-auto px-4 pb-2 gap-1 border-t border-mckinsey-border/30">
           {navItems.map((item) => {
             const isActive = location.pathname === item.path ||
               (item.path !== '/' && location.pathname.startsWith(item.path))
@@ -95,16 +76,19 @@ export default function Layout({ children }: { children: React.ReactNode }) {
                 to={item.path}
                 className={`flex-shrink-0 px-3 py-1.5 rounded-full text-xs font-medium transition-colors ${
                   isActive
-                    ? 'bg-primary-100 dark:bg-primary-900/30 text-primary-700 dark:text-primary-300'
-                    : 'text-surface-600 dark:text-surface-400 hover:bg-surface-100 dark:hover:bg-surface-800'
+                    ? 'bg-mckinsey-teal/10 text-mckinsey-teal'
+                    : 'text-mckinsey-muted hover:text-mckinsey-navy'
                 }`}
               >
-                {item.icon} {item.label}
+                {item.label}
               </Link>
             )
           })}
         </nav>
       </header>
+
+      {/* Spacer for fixed header */}
+      <div className="h-16" />
 
       {/* Main Content */}
       <main className="flex-1">
@@ -113,18 +97,20 @@ export default function Layout({ children }: { children: React.ReactNode }) {
           initial={{ opacity: 0, y: 8 }}
           animate={{ opacity: 1, y: 0 }}
           exit={{ opacity: 0, y: -8 }}
-          transition={{ duration: 0.2 }}
+          transition={{ duration: 0.3 }}
         >
           {children}
         </motion.div>
       </main>
 
       {/* Footer */}
-      <footer className="border-t border-surface-200 dark:border-surface-800 py-6 mt-12">
-        <div className="max-w-7xl mx-auto px-4 text-center text-sm text-surface-700 dark:text-surface-200">
-          <p>Quality Toolbox © 2026 — 基于《质量工具箱》第三版 (Nancy R. Tague)</p>
-          <p className="mt-1 text-surface-700/60 dark:text-surface-200/40">
-            DMAIC · Six Sigma · Continuous Improvement
+      <footer className="border-t border-mckinsey-border py-8 mt-12 bg-white">
+        <div className="max-w-7xl mx-auto px-6 lg:px-16 text-center">
+          <p className="text-sm text-mckinsey-muted">
+            Quality Toolbox © 2026 — 基于《质量工具箱》第三版 (Nancy R. Tague)
+          </p>
+          <p className="mt-1 text-xs text-mckinsey-muted/60">
+            AI Quality Portal · DMAIC · Six Sigma · Continuous Improvement
           </p>
         </div>
       </footer>

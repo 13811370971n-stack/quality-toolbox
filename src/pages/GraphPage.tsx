@@ -16,13 +16,13 @@ export default function GraphPage() {
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
       <h1 className="text-3xl font-bold mb-2">🗺️ DMAIC 知识图谱</h1>
-      <p className="text-surface-700/60 dark:text-surface-200/40 mb-8">
+      <p className="text-mckinsey-muted mb-8">
         横轴展示 DMAIC 五个阶段，每个阶段下分布对应的质量工具。点击工具节点查看详情。
       </p>
 
       {/* Timeline Visualization */}
       <div
-        className="relative overflow-x-auto rounded-2xl border border-surface-200 dark:border-surface-800 bg-white dark:bg-surface-900 p-6"
+        className="relative overflow-x-auto rounded-2xl border border-mckinsey-border bg-white p-6"
       >
         <div style={{ minWidth: totalWidth + 100 }} className="relative">
           {/* Phase axis */}
@@ -57,7 +57,7 @@ export default function GraphPage() {
                 >
                   {phase.id}
                 </div>
-                <div className="text-xs text-surface-700/60 dark:text-surface-200/40">
+                <div className="text-xs text-mckinsey-muted">
                   {phase.nameZh}
                 </div>
               </motion.div>
@@ -108,36 +108,36 @@ export default function GraphPage() {
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: 10 }}
-            className="mt-6 p-6 rounded-xl border border-surface-200 dark:border-surface-800 bg-white dark:bg-surface-900"
+            className="mt-6 p-6 rounded-xl border border-mckinsey-border bg-white"
           >
             <div className="flex items-start justify-between mb-4">
               <div>
                 <h3 className="text-xl font-semibold">{selectedTool.nameZh}</h3>
-                <p className="text-sm text-surface-700/50 dark:text-surface-200/30 font-mono">
+                <p className="text-sm text-mckinsey-muted font-mono">
                   {selectedTool.name}
                 </p>
               </div>
               <button
                 onClick={() => setSelectedTool(null)}
-                className="text-surface-700/50 hover:text-surface-700 dark:text-surface-200/50 dark:hover:text-surface-200"
+                className="text-mckinsey-muted hover:text-mckinsey-navy"
               >
                 ✕
               </button>
             </div>
-            <p className="text-surface-700 dark:text-surface-200 mb-4">
+            <p className="text-mckinsey-navy mb-4">
               {selectedTool.descriptionZh}
             </p>
             <div className="flex gap-3">
               <Link
                 to={`/tools/${selectedTool.id}`}
-                className="px-4 py-2 rounded-lg border border-primary-300 dark:border-primary-700 text-primary-600 dark:text-primary-400 text-sm font-medium hover:bg-primary-50 dark:hover:bg-primary-900/20 transition"
+                className="px-4 py-2 rounded-lg border border-mckinsey-teal/30 text-mckinsey-teal text-sm font-medium hover:bg-mckinsey-teal/5 transition"
               >
                 查看详情 →
               </Link>
               {selectedTool.hasInteractive && (
                 <Link
                   to={selectedTool.interactivePath!}
-                  className="px-4 py-2 rounded-lg bg-primary-600 hover:bg-primary-700 text-white text-sm font-medium transition"
+                  className="px-4 py-2 rounded-lg bg-mckinsey-teal hover:bg-mckinsey-teal text-white text-sm font-medium transition"
                 >
                   ⚒️ 打开工具
                 </Link>

@@ -98,36 +98,36 @@ export default function FlowchartTool() {
       <div className="flex items-center justify-between mb-6">
         <div>
           <h1 className="text-3xl font-bold">🔀 流程图</h1>
-          <p className="text-sm text-surface-700/60 dark:text-surface-200/40">
+          <p className="text-sm text-mckinsey-muted">
             使用标准符号绘制过程流程图。双击节点编辑文字。
           </p>
         </div>
         <button
           onClick={resetAll}
-          className="px-4 py-2 rounded-lg border border-red-200 dark:border-red-800 text-red-600 text-sm hover:bg-red-50 dark:hover:bg-red-900/20 transition"
+          className="px-4 py-2 rounded-lg border border-red-200 text-red-600 text-sm hover:bg-red-50 transition"
         >
           🗑️ 重置
         </button>
       </div>
 
       {/* Toolbar */}
-      <div className="flex gap-2 mb-4 p-3 rounded-lg border border-surface-200 dark:border-surface-800">
-        <button onClick={() => addNode('start')} className="px-3 py-1.5 rounded text-xs bg-green-100 dark:bg-green-900/30 text-green-700 dark:text-green-300 font-medium hover:bg-green-200 transition">
+      <div className="flex gap-2 mb-4 p-3 rounded-lg border border-mckinsey-border">
+        <button onClick={() => addNode('start')} className="px-3 py-1.5 rounded text-xs bg-green-100 text-green-700 font-medium hover:bg-green-200 transition">
           ⬭ 开始/结束
         </button>
-        <button onClick={() => addNode('process')} className="px-3 py-1.5 rounded text-xs bg-blue-100 dark:bg-blue-900/30 text-blue-700 dark:text-blue-300 font-medium hover:bg-blue-200 transition">
+        <button onClick={() => addNode('process')} className="px-3 py-1.5 rounded text-xs bg-blue-100 text-blue-700 font-medium hover:bg-blue-200 transition">
           ▬ 处理
         </button>
-        <button onClick={() => addNode('decision')} className="px-3 py-1.5 rounded text-xs bg-yellow-100 dark:bg-yellow-900/30 text-yellow-700 dark:text-yellow-300 font-medium hover:bg-yellow-200 transition">
+        <button onClick={() => addNode('decision')} className="px-3 py-1.5 rounded text-xs bg-yellow-100 text-yellow-700 font-medium hover:bg-yellow-200 transition">
           ◇ 判断
         </button>
-        <button onClick={() => addNode('end')} className="px-3 py-1.5 rounded text-xs bg-red-100 dark:bg-red-900/30 text-red-700 dark:text-red-300 font-medium hover:bg-red-200 transition">
+        <button onClick={() => addNode('end')} className="px-3 py-1.5 rounded text-xs bg-red-100 text-red-700 font-medium hover:bg-red-200 transition">
           ⬭ 结束
         </button>
       </div>
 
       {/* Canvas */}
-      <div className="rounded-xl border border-surface-200 dark:border-surface-800 bg-white dark:bg-surface-900 overflow-hidden">
+      <div className="rounded-xl border border-mckinsey-border bg-white overflow-hidden">
         <svg viewBox="0 0 600 500" className="w-full" style={{ minHeight: 500 }}>
           {/* Edges */}
           {edges.map((edge) => {
@@ -142,11 +142,11 @@ export default function FlowchartTool() {
                   x1={source.x} y1={source.y + 25}
                   x2={target.x} y2={target.y - 25}
                   stroke="currentColor" strokeWidth={1.5}
-                  className="text-surface-700/50 dark:text-surface-200/30"
+                  className="text-mckinsey-muted"
                   markerEnd="url(#arrowhead)"
                 />
                 {edge.label && (
-                  <text x={midX + 10} y={midY} fontSize={10} fill="currentColor" className="text-surface-700/60 dark:text-surface-200/40">
+                  <text x={midX + 10} y={midY} fontSize={10} fill="currentColor" className="text-mckinsey-muted">
                     {edge.label}
                   </text>
                 )}
@@ -157,7 +157,7 @@ export default function FlowchartTool() {
           {/* Arrow marker definition */}
           <defs>
             <marker id="arrowhead" markerWidth="10" markerHeight="7" refX="10" refY="3.5" orient="auto">
-              <polygon points="0 0, 10 3.5, 0 7" fill="currentColor" className="text-surface-700/50 dark:text-surface-200/30" />
+              <polygon points="0 0, 10 3.5, 0 7" fill="currentColor" className="text-mckinsey-muted" />
             </marker>
           </defs>
 
@@ -175,7 +175,7 @@ export default function FlowchartTool() {
                 textAnchor="middle"
                 fontSize={11}
                 fill="currentColor"
-                className="text-surface-700 dark:text-surface-200 pointer-events-none"
+                className="text-mckinsey-navy pointer-events-none"
               >
                 {node.text}
               </text>
@@ -189,7 +189,7 @@ export default function FlowchartTool() {
         <motion.div
           initial={{ opacity: 0, y: 10 }}
           animate={{ opacity: 1, y: 0 }}
-          className="mt-4 p-4 rounded-xl border border-primary-200 dark:border-primary-800 flex items-center gap-3"
+          className="mt-4 p-4 rounded-xl border border-mckinsey-teal/20 flex items-center gap-3"
         >
           <span className="text-sm">编辑节点:</span>
           <input
@@ -198,17 +198,17 @@ export default function FlowchartTool() {
             onChange={(e) => setEditText(e.target.value)}
             onKeyDown={(e) => e.key === 'Enter' && finishEdit()}
             autoFocus
-            className="flex-1 px-3 py-1.5 rounded border border-surface-200 dark:border-surface-800 bg-white dark:bg-surface-900 text-sm focus:outline-none focus:ring-1 focus:ring-primary-500"
+            className="flex-1 px-3 py-1.5 rounded border border-mckinsey-border bg-white text-sm focus:outline-none focus:ring-1 focus:ring-mckinsey-teal"
           />
-          <button onClick={finishEdit} className="px-3 py-1.5 rounded bg-primary-600 text-white text-sm">确认</button>
+          <button onClick={finishEdit} className="px-3 py-1.5 rounded bg-mckinsey-teal text-white text-sm">确认</button>
           <button onClick={() => removeNode(selectedNode)} className="px-3 py-1.5 rounded bg-red-600 text-white text-sm">删除</button>
         </motion.div>
       )}
 
       {/* Legend */}
-      <div className="mt-4 p-4 rounded-xl border border-surface-200 dark:border-surface-800">
+      <div className="mt-4 p-4 rounded-xl border border-mckinsey-border">
         <h3 className="font-semibold text-sm mb-2">图例</h3>
-        <div className="flex flex-wrap gap-4 text-xs text-surface-700/60 dark:text-surface-200/40">
+        <div className="flex flex-wrap gap-4 text-xs text-mckinsey-muted">
           <span>⬭ 椭圆 = 开始/结束</span>
           <span>▬ 矩形 = 处理步骤</span>
           <span>◇ 菱形 = 判断/决策</span>

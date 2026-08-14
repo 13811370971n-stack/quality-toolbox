@@ -111,14 +111,14 @@ export default function ParetoTool() {
   return (
     <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
       <h1 className="text-3xl font-bold mb-2">📉 帕累托图</h1>
-      <p className="text-sm text-surface-700/60 dark:text-surface-200/40 mb-6">
+      <p className="text-sm text-mckinsey-muted mb-6">
         输入类别和数量，自动排序绘制帕累托图，标注80%线识别"关键少数"。
       </p>
 
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
         {/* Input */}
         <div className="lg:col-span-1">
-          <div className="p-4 rounded-xl border border-surface-200 dark:border-surface-800">
+          <div className="p-4 rounded-xl border border-mckinsey-border">
             <h3 className="font-semibold mb-3">数据输入</h3>
             <div className="space-y-2 mb-3">
               {items.map((item, i) => (
@@ -127,14 +127,14 @@ export default function ParetoTool() {
                     type="text"
                     value={item.category}
                     onChange={(e) => updateItem(i, 'category', e.target.value)}
-                    className="flex-1 px-2 py-1.5 rounded border border-surface-200 dark:border-surface-800 bg-white dark:bg-surface-900 text-sm focus:outline-none focus:ring-1 focus:ring-primary-500"
+                    className="flex-1 px-2 py-1.5 rounded border border-mckinsey-border bg-white text-sm focus:outline-none focus:ring-1 focus:ring-mckinsey-teal"
                     placeholder="类别名"
                   />
                   <input
                     type="number"
                     value={item.count}
                     onChange={(e) => updateItem(i, 'count', e.target.value)}
-                    className="w-20 px-2 py-1.5 rounded border border-surface-200 dark:border-surface-800 bg-white dark:bg-surface-900 text-sm text-center focus:outline-none focus:ring-1 focus:ring-primary-500"
+                    className="w-20 px-2 py-1.5 rounded border border-mckinsey-border bg-white text-sm text-center focus:outline-none focus:ring-1 focus:ring-mckinsey-teal"
                   />
                   <button onClick={() => removeItem(i)} className="text-red-400 hover:text-red-600 text-sm">✕</button>
                 </div>
@@ -142,12 +142,12 @@ export default function ParetoTool() {
             </div>
             <button
               onClick={addItem}
-              className="w-full py-2 rounded-lg border border-dashed border-surface-200 dark:border-surface-800 text-sm hover:border-primary-300 transition"
+              className="w-full py-2 rounded-lg border border-dashed border-mckinsey-border text-sm hover:border-mckinsey-teal/30 transition"
             >
               + 添加类别
             </button>
             {total > 0 && (
-              <p className="mt-3 text-xs text-surface-700/60 dark:text-surface-200/40">
+              <p className="mt-3 text-xs text-mckinsey-muted">
                 总计: {total}
               </p>
             )}
@@ -156,15 +156,15 @@ export default function ParetoTool() {
 
         {/* Chart */}
         <div className="lg:col-span-2">
-          <div className="p-4 rounded-xl border border-surface-200 dark:border-surface-800 bg-white dark:bg-surface-900">
+          <div className="p-4 rounded-xl border border-mckinsey-border bg-white">
             <svg ref={chartRef} className="w-full" style={{ minHeight: 380 }} />
           </div>
           {total > 0 && (
-            <div className="mt-4 p-4 rounded-xl border border-surface-200 dark:border-surface-800">
+            <div className="mt-4 p-4 rounded-xl border border-mckinsey-border">
               <h3 className="font-semibold mb-2 text-sm">分析结果</h3>
               <table className="w-full text-xs">
                 <thead>
-                  <tr className="text-left text-surface-700/60 dark:text-surface-200/40">
+                  <tr className="text-left text-mckinsey-muted">
                     <th className="pb-1">类别</th>
                     <th className="pb-1 text-center">数量</th>
                     <th className="pb-1 text-center">占比</th>
@@ -178,7 +178,7 @@ export default function ParetoTool() {
                     acc.push({ ...item, pct: (item.count / total) * 100, cum })
                     return acc
                   }, [] as { category: string; count: number; pct: number; cum: number }[]).map((item, i) => (
-                    <tr key={i} className={item.cum <= 80 ? 'text-primary-700 dark:text-primary-300 font-medium' : ''}>
+                    <tr key={i} className={item.cum <= 80 ? 'text-mckinsey-teal font-medium' : ''}>
                       <td className="py-1">{item.category}</td>
                       <td className="py-1 text-center">{item.count}</td>
                       <td className="py-1 text-center">{item.pct.toFixed(1)}%</td>

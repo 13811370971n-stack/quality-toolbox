@@ -99,70 +99,70 @@ export default function HistogramTool() {
   return (
     <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
       <h1 className="text-3xl font-bold mb-2">📊 直方图</h1>
-      <p className="text-sm text-surface-700/60 dark:text-surface-200/40 mb-6">
+      <p className="text-sm text-mckinsey-muted mb-6">
         输入测量数据，自动分组绘制频率分布图，计算过程能力 Cp/Cpk。
       </p>
 
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
         {/* Input */}
         <div className="lg:col-span-1">
-          <div className="p-4 rounded-xl border border-surface-200 dark:border-surface-800 space-y-3">
+          <div className="p-4 rounded-xl border border-mckinsey-border space-y-3">
             <h3 className="font-semibold">数据输入</h3>
             <div>
-              <label className="text-xs text-surface-700/60 dark:text-surface-200/40 block mb-1">测量值（每行一个）：</label>
+              <label className="text-xs text-mckinsey-muted block mb-1">测量值（每行一个）：</label>
               <textarea
                 value={rawData}
                 onChange={(e) => setRawData(e.target.value)}
                 rows={12}
-                className="w-full px-3 py-2 rounded-lg border border-surface-200 dark:border-surface-800 bg-white dark:bg-surface-900 text-sm font-mono focus:outline-none focus:ring-1 focus:ring-primary-500 resize-none"
+                className="w-full px-3 py-2 rounded-lg border border-mckinsey-border bg-white text-sm font-mono focus:outline-none focus:ring-1 focus:ring-mckinsey-teal resize-none"
               />
             </div>
             <div className="grid grid-cols-2 gap-2">
               <div>
-                <label className="text-xs text-surface-700/60 dark:text-surface-200/40 block mb-1">USL:</label>
-                <input type="text" value={usl} onChange={(e) => setUsl(e.target.value)} className="w-full px-3 py-1.5 rounded border border-surface-200 dark:border-surface-800 bg-white dark:bg-surface-900 text-sm focus:outline-none focus:ring-1 focus:ring-primary-500" />
+                <label className="text-xs text-mckinsey-muted block mb-1">USL:</label>
+                <input type="text" value={usl} onChange={(e) => setUsl(e.target.value)} className="w-full px-3 py-1.5 rounded border border-mckinsey-border bg-white text-sm focus:outline-none focus:ring-1 focus:ring-mckinsey-teal" />
               </div>
               <div>
-                <label className="text-xs text-surface-700/60 dark:text-surface-200/40 block mb-1">LSL:</label>
-                <input type="text" value={lsl} onChange={(e) => setLsl(e.target.value)} className="w-full px-3 py-1.5 rounded border border-surface-200 dark:border-surface-800 bg-white dark:bg-surface-900 text-sm focus:outline-none focus:ring-1 focus:ring-primary-500" />
+                <label className="text-xs text-mckinsey-muted block mb-1">LSL:</label>
+                <input type="text" value={lsl} onChange={(e) => setLsl(e.target.value)} className="w-full px-3 py-1.5 rounded border border-mckinsey-border bg-white text-sm focus:outline-none focus:ring-1 focus:ring-mckinsey-teal" />
               </div>
             </div>
             <label className="flex items-center gap-2 text-sm cursor-pointer">
               <input type="checkbox" checked={showNormal} onChange={(e) => setShowNormal(e.target.checked)} className="rounded" />
               叠加正态曲线
             </label>
-            <p className="text-xs text-surface-700/60 dark:text-surface-200/40">数据点数: {data.length}</p>
+            <p className="text-xs text-mckinsey-muted">数据点数: {data.length}</p>
           </div>
         </div>
 
         {/* Chart + Stats */}
         <div className="lg:col-span-2 space-y-4">
-          <div className="p-4 rounded-xl border border-surface-200 dark:border-surface-800 bg-white dark:bg-surface-900">
+          <div className="p-4 rounded-xl border border-mckinsey-border bg-white">
             <svg ref={chartRef} className="w-full" style={{ minHeight: 350 }} />
           </div>
           {data.length > 1 && (
-            <div className="p-4 rounded-xl border border-surface-200 dark:border-surface-800">
+            <div className="p-4 rounded-xl border border-mckinsey-border">
               <h3 className="font-semibold mb-3">📐 描述统计</h3>
               <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 text-center">
                 <div>
-                  <div className="text-lg font-bold text-primary-600 dark:text-primary-400">{mean.toFixed(4)}</div>
-                  <div className="text-xs text-surface-700/60 dark:text-surface-200/40">均值 (μ)</div>
+                  <div className="text-lg font-bold text-mckinsey-teal">{mean.toFixed(4)}</div>
+                  <div className="text-xs text-mckinsey-muted">均值 (μ)</div>
                 </div>
                 <div>
                   <div className="text-lg font-bold">{std.toFixed(4)}</div>
-                  <div className="text-xs text-surface-700/60 dark:text-surface-200/40">标准差 (σ)</div>
+                  <div className="text-xs text-mckinsey-muted">标准差 (σ)</div>
                 </div>
                 <div>
                   <div className={`text-lg font-bold ${!isNaN(cp) && cp >= 1.33 ? 'text-green-600' : 'text-red-600'}`}>
                     {isNaN(cp) ? 'N/A' : cp.toFixed(3)}
                   </div>
-                  <div className="text-xs text-surface-700/60 dark:text-surface-200/40">Cp</div>
+                  <div className="text-xs text-mckinsey-muted">Cp</div>
                 </div>
                 <div>
                   <div className={`text-lg font-bold ${!isNaN(cpk) && cpk >= 1.33 ? 'text-green-600' : 'text-red-600'}`}>
                     {isNaN(cpk) ? 'N/A' : cpk.toFixed(3)}
                   </div>
-                  <div className="text-xs text-surface-700/60 dark:text-surface-200/40">Cpk</div>
+                  <div className="text-xs text-mckinsey-muted">Cpk</div>
                 </div>
               </div>
             </div>
