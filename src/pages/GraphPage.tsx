@@ -1,4 +1,4 @@
-import { useRef, useEffect, useState } from 'react'
+import { useState } from 'react'
 import { Link } from 'react-router-dom'
 import { motion, AnimatePresence } from 'framer-motion'
 import { dmaicPhases } from '../data/dmaicPhases'
@@ -6,14 +6,12 @@ import { tools } from '../data/tools'
 import { QualityTool } from '../types'
 
 export default function GraphPage() {
-  const containerRef = useRef<HTMLDivElement>(null)
   const [selectedTool, setSelectedTool] = useState<QualityTool | null>(null)
   const [hoveredPhase, setHoveredPhase] = useState<string | null>(null)
 
   // Calculate layout
   const phaseWidth = 200
   const totalWidth = dmaicPhases.length * phaseWidth
-  const svgHeight = 500
 
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">

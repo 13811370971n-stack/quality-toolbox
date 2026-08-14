@@ -13,7 +13,6 @@ export default function ControlChartTool() {
   const [rawData, setRawData] = useState('25.02\n25.01\n24.98\n25.03\n25.00\n24.97\n25.04\n25.01\n24.99\n25.02\n25.06\n25.01\n24.98\n25.00\n25.03\n24.99\n25.01\n25.00\n24.97\n25.02')
   const [subgroupSize, setSubgroupSize] = useState(5)
   const chartRef = useRef<SVGSVGElement>(null)
-  const rangeChartRef = useRef<SVGSVGElement>(null)
 
   const parseData = (): number[] => {
     return rawData
