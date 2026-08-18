@@ -8,7 +8,7 @@ export const dmaicPhases: DmaicPhaseInfo[] = [
     description: '明确问题、目标、范围和客户需求。确定项目章程和团队。',
     color: '#8b5cf6',
     icon: '🎯',
-    tools: ['flowchart'],
+    tools: ['flowchart', 'sipoc', 'affinity-diagram', 'tree-diagram', 'matrix-diagram'],
   },
   {
     id: 'M',
@@ -26,7 +26,7 @@ export const dmaicPhases: DmaicPhaseInfo[] = [
     description: '分析数据找出根本原因，验证因果关系。',
     color: '#f59e0b',
     icon: '🔍',
-    tools: ['cause-effect-diagram', 'pareto-chart', 'scatter-diagram', 'histogram', 'control-chart'],
+    tools: ['cause-effect-diagram', 'five-whys', 'pareto-chart', 'scatter-diagram', 'histogram', 'control-chart', 'fmea', 'affinity-diagram', 'interrelationship-digraph', 'matrix-diagram', 'matrix-data-analysis'],
   },
   {
     id: 'I',
@@ -35,7 +35,7 @@ export const dmaicPhases: DmaicPhaseInfo[] = [
     description: '开发和实施改进方案，验证效果。',
     color: '#10b981',
     icon: '🚀',
-    tools: ['pareto-chart', 'flowchart'],
+    tools: ['pareto-chart', 'flowchart', 'fmea', 'tree-diagram', 'pdpc', 'arrow-diagram'],
   },
   {
     id: 'C',
@@ -44,7 +44,7 @@ export const dmaicPhases: DmaicPhaseInfo[] = [
     description: '建立控制系统，维持改进成果，防止回退。',
     color: '#ef4444',
     icon: '🛡️',
-    tools: ['control-chart', 'check-sheet'],
+    tools: ['control-chart', 'check-sheet', 'fmea', 'pdpc'],
   },
 ]
 

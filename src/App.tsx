@@ -15,6 +15,9 @@ import HistogramTool from './pages/workshop/HistogramTool'
 import ParetoTool from './pages/workshop/ParetoTool'
 import ScatterTool from './pages/workshop/ScatterTool'
 import FlowchartTool from './pages/workshop/FlowchartTool'
+import FiveWhysTool from './pages/workshop/FiveWhysTool'
+import FmeaTool from './pages/workshop/FmeaTool'
+import SipocTool from './pages/workshop/SipocTool'
 
 function App() {
   return (
@@ -33,6 +36,9 @@ function App() {
           <Route path="/workshop/pareto" element={<ParetoTool />} />
           <Route path="/workshop/scatter" element={<ScatterTool />} />
           <Route path="/workshop/flowchart" element={<FlowchartTool />} />
+          <Route path="/workshop/five-whys" element={<FiveWhysTool />} />
+          <Route path="/workshop/fmea" element={<FmeaTool />} />
+          <Route path="/workshop/sipoc" element={<SipocTool />} />
           <Route path="/learn" element={<LearnPage />} />
           <Route path="/recommend" element={<RecommendPage />} />
         </Routes>
