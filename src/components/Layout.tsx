@@ -1,4 +1,4 @@
-import { Link, useLocation } from 'react-router-dom'
+import { Link, useLocation, useSearchParams } from 'react-router-dom'
 import { motion } from 'framer-motion'
 
 const navItems = [
@@ -12,6 +12,39 @@ const navItems = [
 
 export default function Layout({ children }: { children: React.ReactNode }) {
   const location = useLocation()
+  const [searchParams] = useSearchParams()
+  const isEmbedded = searchParams.get('embedded') === 'true'
+
+  // In embedded mode, show minimal chrome
+  if (isEmbedded) {
+    return (
+      <div className="min-h-screen flex flex-col bg-mckinsey-light">
+        {/* Compact tab nav for embedded mode */}
+        <nav className="sticky top-0 z-50 bg-white border-b border-mckinsey-border px-4 py-2 flex items-center gap-1 overflow-x-auto">
+          {navItems.map((item) => {
+            const isActive = location.pathname === item.path ||
+              (item.path !== '/' && location.pathname.startsWith(item.path))
+            return (
+              <Link
+                key={item.path}
+                to={item.path + '?embedded=true'}
+                className={`flex-shrink-0 px-3 py-1.5 rounded-full text-xs font-medium transition-colors ${
+                  isActive
+                    ? 'bg-mckinsey-teal/10 text-mckinsey-teal'
+                    : 'text-mckinsey-muted hover:text-mckinsey-navy hover:bg-mckinsey-light'
+                }`}
+              >
+                {item.label}
+              </Link>
+            )
+          })}
+        </nav>
+        <main className="flex-1">
+          {children}
+        </main>
+      </div>
+    )
+  }
 
   return (
     <div className="min-h-screen flex flex-col bg-mckinsey-light">
